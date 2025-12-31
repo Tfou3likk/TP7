@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>VinylMarketSpringThymeleaf</title>
+</head>
+
+<body>
+	<h2>Bonjour, veuillez vous connecter en renseignant votre email :</h2>
+		<form th:action="@{/login}" method="post">
+			<input type="text" name="email" required />
+			<input type="submit" value="Se connecter" />
+		</form>
+		
+
+			<p th:if="${loginFailure}" style="color: red">Email ou mot de passe incorrect</p>
+
+			<a th:href="@{/signup}"><button>Créer un compte</button></a>
+</body>
+
+</html>

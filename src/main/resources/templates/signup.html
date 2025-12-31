@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Création d'un utilisateur</title></head>
+<body>
+    <h1>Créer un nouvel utilisateur</h1>
+    <form method="post" th:action="@{/signup}">
+        <label>Email</label>
+        <input type="text" name="email"/>
+        <br/>
+        <label>Prénom</label>
+        <input type="text" name="firstname"/>
+        <br/>
+        <label>Nom</label>
+        <input type="text" name="lastname"/>
+        <br/>
+        <input type="submit" value="Enregister & se connecter"/>
+    </form>
+    
+        <p th:if="${signupFailure}" style="color: red">Une erreur s'est glissé dans le formulaire ou l'utilisateur existe déjà</p>
+    <a th:href="@{/}"><button>Retour à la connexion</button></a>
+</html>

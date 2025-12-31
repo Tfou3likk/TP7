@@ -16,7 +16,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
 
     // TODO to implement
 	
-	protected UserDaoImpl(JdbcTemplate jdbcTemplate) {
+	public UserDaoImpl(JdbcTemplate jdbcTemplate) {
 		super(jdbcTemplate);
 		// TODO Auto-generated constructor stub
 	}
@@ -26,7 +26,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
 		String requete = "SELECT * FROM user WHERE email = ?";
 		return jdbcTemplate.query(requete, rs -> {
 			if(rs.next()) {
-				return new User(rs.getString("email"), rs.getString("fistname"), rs.getString("lastname"));
+				return new User(rs.getString("email"), rs.getString("firstname"), rs.getString("lastname"));
 			}
 			return null;
 		}, email);
@@ -51,9 +51,9 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
 			String requete = "INSERT INTO user(email, firstname, lastname) VALUES (?, ?, ?)";
 			int register = jdbcTemplate.update(requete, u.email(), u.firstName(), u.lastName());
 			if (register == 1) {
-				return false;
-			}else {
 				return true;
+			}else {
+				return false;
 			}
 			
 			

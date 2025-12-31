@@ -75,6 +75,7 @@
 	<bean id="basketService"
 		class="fr.univ.tours.jakartaee.tp6.business.impl.BasketServiceImpl"
 		scope ="session">
+		<aop:scoped-proxy/>
 		<constructor-arg ref="diskToSoldDao" />
 		<constructor-arg ref="transactionService" />
 	</bean>
@@ -116,7 +117,7 @@
 	</bean>
 
 	<bean id="userDao"
-		class="fr.univ.tours.jakartaee.tp6.dao.impl.UserDAOImpl">
+		class="fr.univ.tours.jakartaee.tp6.dao.impl.UserDaoImpl">
 		<constructor-arg ref="jdbcTemplate" />
 	</bean>
 	

@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>VinylMarketEJB</title>
+</head>
+<body>
+    <h2>Bonjour 
+		<span th:text="${session.user.firstName}"></span>
+		<span th:text="${session.user.lastName}"></span></h2>
+    <h1>Voici votre collection</h1>
+    <table style="margin: 20px">
+        <thead>
+        <tr>
+            <th id="ref">Référence</th>
+            <th id="album">Album</th>
+            <th id="artist">Artiste</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+            <tr th:each="disk : ${collection}">
+                <td th:text="${disk.identificationCode}"></td>
+                <td th:text="${disk.album}"></td>
+                <td th:text="${disk.artist}"></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <a th:href="@{/marketplace}"><button>Acheter de nouveaux disques</button></a>
+</body>
+<style>
+    table {
+        border: 1px double black;
+        border-collapse: separate;
+        border-spacing: 1px;
+    }
+
+    th, td {
+        border: 1px double black;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+</html>

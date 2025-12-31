@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Marketplace</title>
+</head>
+
+<body>
+	<h1>Stock disponible à l'achat</h1>
+	<a th:href="@{/basket}"><button>Consulter mon panier</button></a>
+
+	<table style="margin: 20px">
+		<thead>
+			<tr>
+				<th id="ref">Référence</th>
+				<th id="album">Album</th>
+				<th id="artist">Artiste</th>
+				<th id="price">Prix</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="diskToSold : ${stock}">
+				<td th:text="${diskToSold.disk.identificationCode}"></td>
+				<td th:text="${diskToSold.disk.album}"></td>
+				<td th:text="${diskToSold.disk.artist}"></td>
+				<td th:text="${diskToSold.price}"></td>
+				<td>
+					<form th:action="@{/basket}" method="post">
+						<input type="hidden" name="diskReference" th:value="${diskToSold.disk.identificationCode}" />
+						<input type="hidden" name="action" value="add" />
+						<input type="submit" value="Ajouter au panier" />
+					</form>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+	<a th:href="@{/home}"><button>Retour</button></a>
+</body>
+<style>
+	table {
+		border: 1px double black;
+		border-collapse: separate;
+		border-spacing: 1px;
+	}
+
+	th,
+	td {
+		border: 1px double black;
+		padding: 8px;
+		text-align: left;
+	}
+</style>
+
+</html>

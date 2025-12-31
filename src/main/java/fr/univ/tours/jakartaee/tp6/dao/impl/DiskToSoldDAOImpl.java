@@ -57,6 +57,10 @@ public class DiskToSoldDAOImpl extends AbstractDAO implements DiskToSoldDAO {
     @Override
     public List<DiskToSold> listAllByIds(Collection<String> diskIds){
     	
+    	if(diskIds.isEmpty()) {
+    		return List.of();
+    	}
+    	
        String requete = """
        SELECT d.identification_code, d.album, d.artist, dts.price 
        from disk d natural join disk_to_sold dts 

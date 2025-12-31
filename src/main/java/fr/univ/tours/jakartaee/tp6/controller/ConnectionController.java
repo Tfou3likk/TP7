@@ -27,6 +27,10 @@ public class ConnectionController{
 		this.connectService = connectService;
 	}
 	
+	@GetMapping({"/", "/login"})
+	public String formulaireConnection() {
+		return"index";
+	}
 	
 
 	@PostMapping("/login")
