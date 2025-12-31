@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc
+           https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer" />
+
+	<!-- Active les annotations MVC -->
+	<mvc:annotation-driven validator="validator" />
+
+	<!-- Thymeleaf View Resolver -->
+	<bean id="templateResolver"
+		class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="classpath:/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML" />
+		<property name="characterEncoding" value="UTF-8" />
+		<property name="order" value="10" />
+	</bean>
+
+	<bean id="templateEngine"
+		class="org.thymeleaf.spring6.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="templateEngineMessageSource"
+			ref="messageSource" />
+	</bean>
+
+	<bean class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>
+
+	<!-- validator -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass"
+			value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- Controllers -->
+
+	<!-- Services -->
+	<bean id="basketService"
+		class="fr.univ.tours.jakartaee.tp6.business.impl.BasketServiceImpl"
+		scope ="session">
+		<constructor-arg ref="diskToSoldDao" />
+		<constructor-arg ref="transactionService" />
+	</bean>
+	
+	<bean id="connectionService"
+		class="fr.univ.tours.jakartaee.tp6.business.impl.ConnectionServiceImpl">
+		<constructor-arg ref="userDao" />
+	</bean>
+	
+	<bean id="diskToSoldService"
+		class="fr.univ.tours.jakartaee.tp6.business.impl.DiskToSoldServiceImpl">
+		<constructor-arg ref="diskToSoldDao" />
+		
+	</bean>
+	
+	<bean id="transactionService"
+		class="fr.univ.tours.jakartaee.tp6.business.impl.TransactionServiceImpl">
+		<constructor-arg ref="diskToSoldDao" />
+		<constructor-arg ref="vinylCollectionDao" />
+	</bean>
+	
+	<bean id="vinylCollectionService"
+		class="fr.univ.tours.jakartaee.tp6.business.impl.VinylCollectionServiceImpl">
+		<constructor-arg ref="vinylCollectionDao" />
+	</bean>
+	
+
+	<!-- DAO -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="userDao"
+		class="fr.univ.tours.jakartaee.tp6.dao.impl.UserDAOImpl">
+		<constructor-arg ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="diskToSoldDao"
+		class="fr.univ.tours.jakartaee.tp6.dao.impl.DiskToSoldDAOImpl">
+		<constructor-arg ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="vinylCollectionDao"
+		class="fr.univ.tours.jakartaee.tp6.dao.impl.VinylCollectionDAOImpl">
+		<constructor-arg ref="jdbcTemplate" />
+	</bean>
+	
+
+	<!-- i18n -->
+
+
+</beans>
