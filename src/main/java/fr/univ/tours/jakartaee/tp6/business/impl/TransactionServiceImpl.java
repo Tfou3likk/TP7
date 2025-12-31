@@ -28,7 +28,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 	@Override
-    public void makeTransaction(User buyer, Collection<String> diskIds) throws SQLException{
+    public void makeTransaction(User buyer, Collection<String> diskIds){
         diskToSoldDAO.removeFromMarketplace(diskIds);
         vinylCollectionDAO.addToCollection(buyer,diskIds);
     }

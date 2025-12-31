@@ -39,7 +39,7 @@ public class BasketServiceImpl implements BasketService {
 
 
     @Override
-    public List<DiskToSold> getBasketDetail() throws SQLException {
+    public List<DiskToSold> getBasketDetail(){
         // TODO to implements
     	return diskToSoldDAO.listAllByIds(basketByReference);
     }
@@ -51,7 +51,7 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public boolean makeOrder(User buyer) throws SQLException{
+    public boolean makeOrder(User buyer){
         // TODO to implements
     	if(basketByReference.isEmpty()) {
     		return false;

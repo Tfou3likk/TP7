@@ -22,14 +22,14 @@ public class DiskToSoldServiceImpl implements DiskToSoldService {
 	}
 
 	@Override
-    public List<DiskToSold> listAll() throws SQLException {
+    public List<DiskToSold> listAll() {
         // TODO to implements
         
     	return diskToSoldDAO.listAll();
     }
 
     @Override
-    public List<DiskToSold> listAllByIds(Collection<String> diskIdentificationCodes) throws SQLException {
+    public List<DiskToSold> listAllByIds(Collection<String> diskIdentificationCodes){
         // TODO to implements
         return diskToSoldDAO.listAllByIds(diskIdentificationCodes);
     }

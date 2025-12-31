@@ -12,7 +12,7 @@ import fr.univ.tours.jakartaee.tp6.business.pojo.User;
 
 public interface VinylCollectionDAO {
 
-    void addToCollection(User buyer, Collection<String> diskIds) throws SQLException;
+    void addToCollection(User buyer, Collection<String> diskIds);
     
     List<Disk> listCollection(User owner);
 

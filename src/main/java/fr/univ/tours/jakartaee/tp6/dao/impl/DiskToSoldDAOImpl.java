@@ -34,7 +34,7 @@ public class DiskToSoldDAOImpl extends AbstractDAO implements DiskToSoldDAO {
  
 
 	@Override
-    public List<DiskToSold> listAll() throws SQLException {
+    public List<DiskToSold> listAll(){
     	
 		String requete = "Select d.identification_code, d.album, d.artist, dts.price from disk d natural join disk_to_sold dts";
        return jdbcTemplate.query(requete, rs ->{
@@ -55,7 +55,7 @@ public class DiskToSoldDAOImpl extends AbstractDAO implements DiskToSoldDAO {
     }
 
     @Override
-    public List<DiskToSold> listAllByIds(Collection<String> diskIds) throws SQLException {
+    public List<DiskToSold> listAllByIds(Collection<String> diskIds){
     	
        String requete = """
        SELECT d.identification_code, d.album, d.artist, dts.price 
@@ -83,7 +83,7 @@ public class DiskToSoldDAOImpl extends AbstractDAO implements DiskToSoldDAO {
     }
 
     @Override
-    public void removeFromMarketplace(Collection<String> diskIds) throws SQLException {
+    public void removeFromMarketplace(Collection<String> diskIds){
        
     	String requete =  """
                 DELETE FROM disk_to_sold 

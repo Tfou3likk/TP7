@@ -45,6 +45,31 @@
 	</bean>
 
 	<!-- Controllers -->
+	
+	<bean id="basketController"
+		class="fr.univ.tours.jakartaee.tp6.controller.BasketController">
+		<constructor-arg ref="basketService" />
+	</bean>
+	
+	<bean id="connectionController"
+		class="fr.univ.tours.jakartaee.tp6.controller.ConnectionController">
+		<constructor-arg ref="connectionService" />
+	</bean>
+	
+	<bean id="signupController"
+		class="fr.univ.tours.jakartaee.tp6.controller.SignupController">
+		<constructor-arg ref="connectionService" />
+	</bean>
+	
+	<bean id="vinylCollectionController"
+		class="fr.univ.tours.jakartaee.tp6.controller.VinylCollectionController">
+		<constructor-arg ref="vinylCollectionService" />
+	</bean>
+	
+	<bean id="marketPlaceController"
+		class="fr.univ.tours.jakartaee.tp6.controller.MarketplaceController">
+		<constructor-arg ref="diskToSoldService" />
+	</bean>
 
 	<!-- Services -->
 	<bean id="basketService"

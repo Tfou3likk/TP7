@@ -1,4 +1,4 @@
-package fr.univ.tours.jakartaee.tp6.servlet;
+package fr.univ.tours.jakartaee.tp6.controller;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

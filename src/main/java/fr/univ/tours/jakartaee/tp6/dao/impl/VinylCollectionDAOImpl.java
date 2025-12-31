@@ -23,7 +23,7 @@ public class VinylCollectionDAOImpl extends AbstractDAO implements VinylCollecti
 	}
 
 	@Override
-    public void addToCollection(User buyer, Collection<String> diskIds) throws SQLException {
+    public void addToCollection(User buyer, Collection<String> diskIds) {
         
 		String requete = "INSERT INTO vinyl_collection(identification_code,user) VALUES (?,?)";
 		jdbcTemplate.batchUpdate(requete, diskIds, diskIds.size(), (ps, diskId)->{

@@ -11,11 +11,11 @@ import fr.univ.tours.jakartaee.tp6.business.pojo.User;
 
 public interface BasketService {
 
-    List<DiskToSold> getBasketDetail() throws SQLException;
+    List<DiskToSold> getBasketDetail();
 
     void addToBasket(String diskReference);
 
     void removeFromBasket(String diskReference);
 
-    boolean makeOrder(User buyer) throws SQLException;
+    boolean makeOrder(User buyer);
 }

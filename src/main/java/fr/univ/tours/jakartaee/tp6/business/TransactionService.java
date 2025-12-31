@@ -10,6 +10,6 @@ import fr.univ.tours.jakartaee.tp6.business.pojo.User;
 
 public interface TransactionService {
 
-    void makeTransaction(User buyer, Collection<String> diskIds) throws SQLException;
+    void makeTransaction(User buyer, Collection<String> diskIds);
 
 }
