@@ -8,7 +8,7 @@ import fr.univ.tours.jakartaee.tp6.dao.UserDao;
 import fr.univ.tours.jakartaee.tp6.dao.impl.UserDaoImpl;
 
 
-@Service
+
 public class ConnectionServiceImpl implements ConnectionService {
 	
 	

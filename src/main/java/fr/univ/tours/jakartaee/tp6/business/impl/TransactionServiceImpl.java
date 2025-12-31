@@ -16,10 +16,18 @@ public class TransactionServiceImpl implements TransactionService {
 	
     private DiskToSoldDAO diskToSoldDAO;
     
-    
     private VinylCollectionDAO vinylCollectionDAO;
+    
+    
+    public TransactionServiceImpl(DiskToSoldDAO diskToSoldDAO, VinylCollectionDAO vinylCollectionDAO) {
+		super();
+		this.diskToSoldDAO = diskToSoldDAO;
+		this.vinylCollectionDAO = vinylCollectionDAO;
+	}
 
-    @Override
+
+
+	@Override
     public void makeTransaction(User buyer, Collection<String> diskIds) throws SQLException{
         diskToSoldDAO.removeFromMarketplace(diskIds);
         vinylCollectionDAO.addToCollection(buyer,diskIds);

@@ -13,7 +13,18 @@ import fr.univ.tours.jakartaee.tp6.dao.VinylCollectionDAO;
 public class VinylCollectionServiceImpl implements fr.univ.tours.jakartaee.tp6.business.VinylCollectionService {
 	
 	
+	
 	private VinylCollectionDAO vinylCollectionDAO;
+	
+	
+	
+	public VinylCollectionServiceImpl(VinylCollectionDAO vinylCollectionDAO) {
+		super();
+		this.vinylCollectionDAO = vinylCollectionDAO;
+	}
+
+
+
 	@Override
 	public List<Disk> listCollection(User owner) {
 		// TODO Auto-generated method stub

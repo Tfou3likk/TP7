@@ -16,7 +16,12 @@ public class DiskToSoldServiceImpl implements DiskToSoldService {
 	
 	private DiskToSoldDAO diskToSoldDAO;
 	
-    @Override
+	public DiskToSoldServiceImpl(DiskToSoldDAO diskToSoldDAO) {
+		super();
+		this.diskToSoldDAO = diskToSoldDAO;
+	}
+
+	@Override
     public List<DiskToSold> listAll() throws SQLException {
         // TODO to implements
         

@@ -12,18 +12,26 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Stateful(name="BasketEJB")
+
 public class BasketServiceImpl implements BasketService {
 
     private final Set<String> basketByReference = new HashSet<>();
-    @EJB
+    
     private DiskToSoldDAO  diskToSoldDAO;
     
-    @EJB
     private TransactionService transactionService;
     
     
-    @Override
+    
+    
+    public BasketServiceImpl(DiskToSoldDAO diskToSoldDAO, TransactionService transactionService) {
+		super();
+		this.diskToSoldDAO = diskToSoldDAO;
+		this.transactionService = transactionService;
+	}
+
+
+	@Override
     public void addToBasket(String diskReference) {
         // TODO to implements
     	basketByReference.add(diskReference);
@@ -48,11 +56,11 @@ public class BasketServiceImpl implements BasketService {
     	if(basketByReference.isEmpty()) {
     		return false;
     	}
-    	transactionEJB.makeTransaction(buyer, basketByReference);
+    	transactionService.makeTransaction(buyer, basketByReference);
     	return true;
     }
 
-    @Remove
+    
     public void clearBasket(){
     	basketByReference.clear();
     }
