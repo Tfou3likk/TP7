@@ -1,4 +1,4 @@
-# Correction TP5 - EJB
+# Correction TP7 - JPA
 
 ## Initialisation de la BDD
 

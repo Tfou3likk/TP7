@@ -47,22 +47,22 @@
 	<!-- DAO -->
 	<bean id="userDao"
 		class="fr.univ.tours.jakartaee.tp7.dao.impl.UserDaoImpl">
-		<constructor-arg ref="jdbcTemplate" />
+		
 	</bean>
 
 	<bean id="diskToSoldDao"
 		class="fr.univ.tours.jakartaee.tp7.dao.impl.DiskToSoldDAOImpl">
-		<constructor-arg ref="jdbcTemplate" />
+		
 	</bean>
 
 	<bean id="vinylCollectionDao"
 		class="fr.univ.tours.jakartaee.tp7.dao.impl.VinylCollectionDAOImpl">
-		<constructor-arg ref="jdbcTemplate" />
+		
 	</bean>
 
 	<bean id="addDiskDao"
 		class="fr.univ.tours.jakartaee.tp7.dao.impl.AddDiskDAOImpl">
-		<constructor-arg ref="jdbcTemplate" />
+		
 	</bean>
 
 </beans>
