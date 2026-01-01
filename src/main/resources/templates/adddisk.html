@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Nouveau Disk</title>
+</head>
+<body>
+	<h1>Créer uen Référence</h1>
+	<form th:action="@{/adddisk}" method="post" th:object="${diskForm}">
+		<label>Identifiant Unique</label>
+		<input type="text" th:field="*{identificationCode}"><br>
+		<label>Album</label>
+		<input type="text" th:field="*{album}"><br>
+		<label>Artiste</label>
+		<input type="text" th:field="*{artist}"><br>
+		<input type="hidden" name="action" value="add" />
+		<input type="submit" value="Ajout Manuel">
+		<div th:if="${diskForm != null and #fields.hasErrors('*')}" style="color:red">
+   		<p th:each="e : ${#fields.errors('*')}" th:text="${e}"></p>
+		</div>
+	</form>
+	<a th:href="@{/home}"><button>Retour</button></a>
+	
+	
+	<table style="margin: 20px">
+		<thead>
+        <tr>
+            <th id="ref">Référence</th>
+            <th id="album">Album</th>
+            <th id="artist">Artiste</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        
+            <tr th:each="disk : ${listeDisk}">
+                <td th:text="${disk.identificationCode}"></td>
+                <td th:text="${disk.album}"></td>
+                <td th:text="${disk.artist}"></td>
+                <td>
+					<form th:action="@{/adddisk}" method="post">
+						<input type="hidden" name="action" value="select" />
+						 <input type="hidden" name="identificationCode" th:value="${disk.identificationCode}" />
+						<input type="submit" value="Selectionner">
+					</form>
+				</td>
+            </tr>
+
+        </tbody>
+		
+		
+	</table>
+	
+	
+	<style>
+    table {
+        border: 1px double black;
+        border-collapse: separate;
+        border-spacing: 1px;
+    }
+
+    th, td {
+        border: 1px double black;
+        padding: 8px;
+        text-align: left;
+    }
+	</style>
+
+</body>
+</html>

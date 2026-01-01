@@ -90,5 +90,12 @@ public class VinylCollectionDAOImpl extends AbstractDAO implements VinylCollecti
     	
     }
 
+	@Override
+	public void addToCollectionbyId(User owner, String diskId) {
+		// TODO Auto-generated method stub
+		String requete = "INSERT INTO vinyl_collection(identification_code,user) VALUES (?,?)";
+		jdbcTemplate.update(requete, diskId, owner.email());
+	}
+
 
 }

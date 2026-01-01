@@ -70,6 +70,13 @@
 		class="fr.univ.tours.jakartaee.tp6.controller.MarketplaceController">
 		<constructor-arg ref="diskToSoldService" />
 	</bean>
+	
+	<bean id="addDiskController"
+		class="fr.univ.tours.jakartaee.tp6.controller.AddDiskController">
+		<constructor-arg ref="addDiskService" />
+		<constructor-arg ref="vinylCollectionService" />
+	</bean>
+	
 
 	<!-- Services -->
 	<bean id="basketService"
@@ -102,6 +109,11 @@
 		<constructor-arg ref="vinylCollectionDao" />
 	</bean>
 	
+	<bean id="addDiskService"
+		class="fr.univ.tours.jakartaee.tp6.business.impl.AddDiskServiceImpl">
+		<constructor-arg ref="addDiskDao" />
+	</bean>
+	
 
 	<!-- DAO -->
 	<bean id="dataSource"
@@ -128,6 +140,11 @@
 	
 	<bean id="vinylCollectionDao"
 		class="fr.univ.tours.jakartaee.tp6.dao.impl.VinylCollectionDAOImpl">
+		<constructor-arg ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="addDiskDao"
+		class="fr.univ.tours.jakartaee.tp6.dao.impl.AddDiskDAOImpl">
 		<constructor-arg ref="jdbcTemplate" />
 	</bean>
 	

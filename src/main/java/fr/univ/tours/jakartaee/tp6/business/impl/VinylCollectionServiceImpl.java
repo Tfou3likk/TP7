@@ -1,5 +1,6 @@
 package fr.univ.tours.jakartaee.tp6.business.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -30,5 +31,23 @@ public class VinylCollectionServiceImpl implements fr.univ.tours.jakartaee.tp6.b
 		// TODO Auto-generated method stub
 		return vinylCollectionDAO.listCollection(owner);
 	}
+
+
+
+	@Override
+	public void addToCollection(User buyer, Collection<String> diskIds) {
+		// TODO Auto-generated method stub
+		vinylCollectionDAO.addToCollection(buyer, diskIds);
+	}
+
+
+
+	@Override
+	public void addToCollectionbyId(User owner, String diskId) {
+		// TODO Auto-generated method stub
+		vinylCollectionDAO.addToCollectionbyId(owner, diskId);
+	}
+	
+	
 
 }

@@ -14,6 +14,8 @@ public interface VinylCollectionDAO {
 
     void addToCollection(User buyer, Collection<String> diskIds);
     
+    void addToCollectionbyId(User owner, String diskId);
+    
     List<Disk> listCollection(User owner);
 
 }
