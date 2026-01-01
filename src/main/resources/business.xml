@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc
+           https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <import resource="classpath:data.xml"/>
+
+	<!-- Services -->
+	<bean id="basketService"
+		class="fr.univ.tours.jakartaee.tp7.business.impl.BasketServiceImpl"
+		scope ="session">
+		<aop:scoped-proxy/>
+		<constructor-arg ref="diskToSoldDao" />
+		<constructor-arg ref="transactionService" />
+	</bean>
+	
+	<bean id="connectionService"
+		class="fr.univ.tours.jakartaee.tp7.business.impl.ConnectionServiceImpl">
+		<constructor-arg ref="userDao" />
+	</bean>
+	
+	<bean id="diskToSoldService"
+		class="fr.univ.tours.jakartaee.tp7.business.impl.DiskToSoldServiceImpl">
+		<constructor-arg ref="diskToSoldDao" />
+		
+	</bean>
+	
+	<bean id="transactionService"
+		class="fr.univ.tours.jakartaee.tp7.business.impl.TransactionServiceImpl">
+		<constructor-arg ref="diskToSoldDao" />
+		<constructor-arg ref="vinylCollectionDao" />
+	</bean>
+	
+	<bean id="vinylCollectionService"
+		class="fr.univ.tours.jakartaee.tp7.business.impl.VinylCollectionServiceImpl">
+		<constructor-arg ref="vinylCollectionDao" />
+	</bean>
+	
+	<bean id="addDiskService"
+		class="fr.univ.tours.jakartaee.tp7.business.impl.AddDiskServiceImpl">
+		<constructor-arg ref="addDiskDao" />
+	</bean>
+    
+
+
+</beans>

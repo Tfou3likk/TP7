@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <import resource="business.xml"/>
+
+    <!-- Active les annotations MVC -->
+	<mvc:annotation-driven validator="validator" />
+
+	<!-- Thymeleaf View Resolver -->
+	<bean id="templateResolver"
+		class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="classpath:/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML" />
+		<property name="characterEncoding" value="UTF-8" />
+		<property name="order" value="10" />
+	</bean>
+
+	<bean id="templateEngine"
+		class="org.thymeleaf.spring6.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="templateEngineMessageSource"
+			ref="messageSource" />
+	</bean>
+
+	<bean class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>
+
+	<!-- validator -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass"
+			value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+    
+    <bean id="basketController"
+		class="fr.univ.tours.jakartaee.tp7.controller.BasketController">
+		<constructor-arg ref="basketService" />
+	</bean>
+	
+	<bean id="connectionController"
+		class="fr.univ.tours.jakartaee.tp7.controller.ConnectionController">
+		<constructor-arg ref="connectionService" />
+	</bean>
+	
+	<bean id="signupController"
+		class="fr.univ.tours.jakartaee.tp7.controller.SignupController">
+		<constructor-arg ref="connectionService" />
+	</bean>
+	
+	<bean id="vinylCollectionController"
+		class="fr.univ.tours.jakartaee.tp7.controller.VinylCollectionController">
+		<constructor-arg ref="vinylCollectionService" />
+	</bean>
+	
+	<bean id="marketPlaceController"
+		class="fr.univ.tours.jakartaee.tp7.controller.MarketplaceController">
+		<constructor-arg ref="diskToSoldService" />
+	</bean>
+	
+	<bean id="addDiskController"
+		class="fr.univ.tours.jakartaee.tp7.controller.AddDiskController">
+		<constructor-arg ref="addDiskService" />
+		<constructor-arg ref="vinylCollectionService" />
+	</bean>
+
+</beans>

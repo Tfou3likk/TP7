@@ -1,0 +1,25 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+version="3.0">
+<persistence-unit name="default">
+<class>… entities</class>
+<!-- Configuration de la source de données -->
+<properties>
+<!-- Ces propriétés peuvent être utilisées si vous souhaitez configurer la BDD dans le persistence.xml
+-->
+<!-- <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />-->
+<!-- <property name="jakarta.persistence.jdbc.url"
+value="jdbc:mysql://localhost:3306/your_database_name" />-->
+<!-- <property name="jakarta.persistence.jdbc.user" value="your_username" />-->
+<!-- <property name="jakarta.persistence.jdbc.password" value="your_password" />-->
+<!-- Configuration Hibernate -->
+<!-- La configuration du dialecte est obligatoire et donne à l’ORM le langage à utiliser -->
+<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+<!-- Permet de valider vos Entités en fonction de la BDD, d’autres configurations sont possibles
+-->
+<property name="hibernate.hbm2ddl.auto" value="validate"/>
+<!-- Ces propriétés peuvent vous aider à logger les requêtes JPQL -->
+<!-- <property name="hibernate.show_sql" value="true"/>-->
+<!-- <property name="hibernate.format_sql" value="true"/>-->
+</properties>
+</persistence-unit>
+</persistence>
