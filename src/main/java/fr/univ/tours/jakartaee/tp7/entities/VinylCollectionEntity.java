@@ -24,6 +24,19 @@ public class VinylCollectionEntity {
 	@JoinColumn(name = "identification_code")
 	@MapsId("identificationCode")
 	private DiskEntity disk;
+	
+	
+	
+	public VinylCollectionEntity() {
+		super();
+	}
+
+	public VinylCollectionEntity(UserEntity user, DiskEntity disk) {
+		super();
+		this.id = new VinylCollectionEntityId();
+		this.user = user;
+		this.disk = disk;
+	}
 
 	public UserEntity getUser() {
 		return user;

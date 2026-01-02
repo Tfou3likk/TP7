@@ -5,14 +5,16 @@ import java.util.List;
 
 import fr.univ.tours.jakartaee.tp7.business.pojo.Disk;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
+import fr.univ.tours.jakartaee.tp7.entities.DiskEntity;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 
 
 
 public interface VinylCollectionService {
 	
-	List<Disk> listCollection(User owner);
+	List<DiskEntity> listCollection(UserEntity owner);
 
-	void addToCollection(User buyer, Collection<String> diskIds);
+	void addToCollection(UserEntity buyer, Collection<String> diskIds);
 	
-	void addToCollectionbyId(User owner, String diskId);
+	void addToCollectionbyId(UserEntity owner, String diskId);
 }

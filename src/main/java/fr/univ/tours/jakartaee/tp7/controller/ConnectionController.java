@@ -2,6 +2,7 @@ package fr.univ.tours.jakartaee.tp7.controller;
 
 import fr.univ.tours.jakartaee.tp7.business.ConnectionService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 import jakarta.servlet.http.HttpSession;
 
 
@@ -33,7 +34,7 @@ public class ConnectionController{
 	@PostMapping("/login")
     public String login(Model model, @RequestParam("email") String email, HttpSession session) {
         try {
-            User user = connectService.connect(email); // TODO implement this assignment with the EJB
+            UserEntity user = connectService.connect(email); // TODO implement this assignment with the EJB
            
             session.setAttribute("user", user);
             session.setAttribute("isLogged", true);

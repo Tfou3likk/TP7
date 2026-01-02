@@ -15,6 +15,8 @@ import fr.univ.tours.jakartaee.tp7.business.VinylCollectionService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.Disk;
 import fr.univ.tours.jakartaee.tp7.business.pojo.DiskForm;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
+import fr.univ.tours.jakartaee.tp7.entities.DiskEntity;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -35,7 +37,7 @@ public class AddDiskController {
 
 	@GetMapping("/adddisk")
 	public String ajoutDiskFormulaire(Model model) {
-		List<Disk> listeDisk = addDiskService.listAllDisk();
+		List<DiskEntity> listeDisk = addDiskService.listAllDisk();
 		model.addAttribute("listeDisk", listeDisk);
 		model.addAttribute("diskForm", new DiskForm());
 		return"adddisk";
@@ -46,7 +48,7 @@ public class AddDiskController {
 		
 		switch(action) {
 			case "add" ->{
-				User connectedUser = (User)session.getAttribute("user");
+				UserEntity connectedUser = (UserEntity)session.getAttribute("user");
 		        if(bindingResult.hasErrors()) {
 		        	model.addAttribute("listeDisk", addDiskService.listAllDisk());
 		            return "adddisk";
@@ -55,12 +57,12 @@ public class AddDiskController {
 				return "redirect:/home";
 			}
 			case"select" ->{
-				Disk disk = addDiskService.getDiskById(form.getIdentificationCode());
+				DiskEntity disk = addDiskService.getDiskById(form.getIdentificationCode());
 				DiskForm formaffiche = new DiskForm();
 				if (disk != null) {
-					formaffiche.setIdentificationCode(disk.identificationCode());
-	                formaffiche.setAlbum(disk.album());
-	                formaffiche.setArtist(disk.artist());
+					formaffiche.setIdentificationCode(disk.getIdentificationCode());
+	                formaffiche.setAlbum(disk.getAlbum());
+	                formaffiche.setArtist(disk.getArtist());
 	            }
 				model.addAttribute("diskForm", formaffiche);
 				model.addAttribute("listeDisk", addDiskService.listAllDisk());

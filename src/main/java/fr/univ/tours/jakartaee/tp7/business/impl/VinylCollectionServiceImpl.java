@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import fr.univ.tours.jakartaee.tp7.business.pojo.Disk;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
 import fr.univ.tours.jakartaee.tp7.dao.VinylCollectionDAO;
+import fr.univ.tours.jakartaee.tp7.entities.DiskEntity;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 
 
 @Service
@@ -27,7 +29,7 @@ public class VinylCollectionServiceImpl implements fr.univ.tours.jakartaee.tp7.b
 
 
 	@Override
-	public List<Disk> listCollection(User owner) {
+	public List<DiskEntity> listCollection(UserEntity owner) {
 		// TODO Auto-generated method stub
 		return vinylCollectionDAO.listCollection(owner);
 	}
@@ -35,7 +37,7 @@ public class VinylCollectionServiceImpl implements fr.univ.tours.jakartaee.tp7.b
 
 
 	@Override
-	public void addToCollection(User buyer, Collection<String> diskIds) {
+	public void addToCollection(UserEntity buyer, Collection<String> diskIds) {
 		// TODO Auto-generated method stub
 		vinylCollectionDAO.addToCollection(buyer, diskIds);
 	}
@@ -43,7 +45,7 @@ public class VinylCollectionServiceImpl implements fr.univ.tours.jakartaee.tp7.b
 
 
 	@Override
-	public void addToCollectionbyId(User owner, String diskId) {
+	public void addToCollectionbyId(UserEntity owner, String diskId) {
 		// TODO Auto-generated method stub
 		vinylCollectionDAO.addToCollectionbyId(owner, diskId);
 	}

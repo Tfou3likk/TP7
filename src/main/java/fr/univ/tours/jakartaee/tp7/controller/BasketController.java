@@ -3,6 +3,8 @@ package fr.univ.tours.jakartaee.tp7.controller;
 import fr.univ.tours.jakartaee.tp7.business.BasketService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.DiskToSold;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
+import fr.univ.tours.jakartaee.tp7.entities.DiskToSoldEntity;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,7 +38,7 @@ public class BasketController{
 
 	@GetMapping("/basket")
     public String affichagePanier(Model model){
-        Collection<DiskToSold> currentBasket;
+        Collection<DiskToSoldEntity> currentBasket;
 		
 			
         currentBasket = basketService.getBasketDetail(); 
@@ -60,7 +62,7 @@ public class BasketController{
             	return"redirect:/marketplace";
             } // TODO implement this assignment with the EJB
             case "submit" -> {
-            	User buyer = (User) session.getAttribute("user");
+            	UserEntity buyer = (UserEntity) session.getAttribute("user");
 				submitSuccess = basketService.makeOrder(buyer);
 				if (submitSuccess) {
 	                return"redirect:/home";

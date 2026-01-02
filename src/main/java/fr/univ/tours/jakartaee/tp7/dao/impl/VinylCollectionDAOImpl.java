@@ -3,6 +3,12 @@ package fr.univ.tours.jakartaee.tp7.dao.impl;
 import fr.univ.tours.jakartaee.tp7.business.pojo.Disk;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
 import fr.univ.tours.jakartaee.tp7.dao.VinylCollectionDAO;
+import fr.univ.tours.jakartaee.tp7.entities.DiskEntity;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
+import fr.univ.tours.jakartaee.tp7.entities.VinylCollectionEntity;
+import fr.univ.tours.jakartaee.tp7.entities.id.VinylCollectionEntityId;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,86 +20,37 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 
-public class VinylCollectionDAOImpl extends AbstractDAO implements VinylCollectionDAO {
+public class VinylCollectionDAOImpl implements VinylCollectionDAO {
 
-    protected VinylCollectionDAOImpl(JdbcTemplate jdbcTemplate) {
-		super(jdbcTemplate);
-		// TODO Auto-generated constructor stub
-	}
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
-    public void addToCollection(User buyer, Collection<String> diskIds) {
-        
-		String requete = "INSERT INTO vinyl_collection(identification_code,user) VALUES (?,?)";
-		jdbcTemplate.batchUpdate(requete, diskIds, diskIds.size(), (ps, diskId)->{
-			ps.setString(1, diskId);
-			ps.setString(2, buyer.email());
-		});
+    public void addToCollection(UserEntity buyer, Collection<String> diskIds) {
 		
+		for(String diskId : diskIds) {
+			
+			DiskEntity disk = new DiskEntity(diskId);
+			VinylCollectionEntity vinylCollection = new VinylCollectionEntity(buyer, disk);
+			
+			em.persist(vinylCollection);
+		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*PreparedStatement preparedStatement = jdbcConnection.prepareStatement(
-                "INSERT INTO vinyl_collection(identification_code,user) VALUES (?,?)"
-        );
-
-        diskIds.forEach(diskId -> {
-            try {
-                preparedStatement.setString(1, diskId);
-                preparedStatement.setString(2, buyer.email());
-                preparedStatement.addBatch();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        preparedStatement.executeBatch();*/
     }
     
-    public List<Disk> listCollection(User owner){
+    public List<DiskEntity> listCollection(UserEntity owner){
     	
-    	List<Disk> listeDisk = new ArrayList<>();
-    	String requete = "SELECT * FROM disk d JOIN vinyl_collection v ON d.identification_code = v.identification_code WHERE v.user = ? ";
-    	return jdbcTemplate.query(requete, rs -> {
-    		while(rs.next()) {
-    			Disk disk = new Disk(rs.getString("identification_code"), rs.getString("album"), rs.getString("artist"));
-        		listeDisk.add(disk);
-    		}
-    		return listeDisk;
-    	}, owner.email());
-    	
-    		
-    		
-    	
-    	
-    	
-    	/*String requete = "SELECT * FROM disk d JOIN vinyl_collection v ON d.identification_code = v.identification_code WHERE v.user = ? ";
-    	PreparedStatement pst = jdbcConnection.prepareStatement(requete);
-    	pst.setString(1, owner.email());
-    	ResultSet rs = pst.executeQuery();
-    	while(rs.next()) {
-    		Disk disk = new Disk(rs.getString("identification_code"), rs.getString("album"), rs.getString("artist"));
-    		listeDisk.add(disk);
-    	}*/
-    		
-    	
-    	
-    	
+    	return em.createQuery("SELECT vc.disk FROM VinylCollectionEntity vc WHERE vc.user = :vcuser ", DiskEntity.class)
+    			.setParameter("vcuser", owner).getResultList();
     	
     }
 
 	@Override
-	public void addToCollectionbyId(User owner, String diskId) {
+	public void addToCollectionbyId(UserEntity owner, String diskId) {
 		// TODO Auto-generated method stub
-		String requete = "INSERT INTO vinyl_collection(identification_code,user) VALUES (?,?)";
-		jdbcTemplate.update(requete, diskId, owner.email());
+		DiskEntity disk = new DiskEntity(diskId);
+		VinylCollectionEntity vinylCollection = new VinylCollectionEntity(owner, disk);
+		em.persist(vinylCollection);
 	}
 
 

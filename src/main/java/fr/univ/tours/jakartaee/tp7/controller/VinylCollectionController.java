@@ -3,6 +3,8 @@ package fr.univ.tours.jakartaee.tp7.controller;
 import fr.univ.tours.jakartaee.tp7.business.VinylCollectionService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.Disk;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
+import fr.univ.tours.jakartaee.tp7.entities.DiskEntity;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
@@ -29,8 +31,8 @@ public class VinylCollectionController {
 
 	@GetMapping("/home")
     public String home(Model model, HttpSession session){
-        User connectedUser = (User)session.getAttribute("user");
-        List<Disk> collection = vinylCollectionService.listCollection(connectedUser); // TODO implement this assignment with the EJB
+        UserEntity connectedUser = (UserEntity)session.getAttribute("user");
+        List<DiskEntity> collection = vinylCollectionService.listCollection(connectedUser); // TODO implement this assignment with the EJB
         model.addAttribute("collection", collection);
         return"home";
     }

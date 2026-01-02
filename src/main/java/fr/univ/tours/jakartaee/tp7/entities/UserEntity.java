@@ -19,13 +19,26 @@ public class UserEntity {
 	private String email;
 	
 	@Column(name = "firstname")
-	private String firstname;
+	private String firstName;
 	
 	@Column(name = "lastname")
-	private String lastname;
+	private String lastName;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<VinylCollectionEntity> vinylCollection;
+	
+	
+
+	public UserEntity() {
+		super();
+	}
+
+	public UserEntity(String email, String firstName, String lastName) {
+		super();
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
 	public List<VinylCollectionEntity> getVinylCollection() {
 		return vinylCollection;
@@ -43,20 +56,20 @@ public class UserEntity {
 		this.email = email;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
 	public void setLastname(String lastname) {
-		this.lastname = lastname;
+		this.lastName = lastname;
 	}
 	
 	

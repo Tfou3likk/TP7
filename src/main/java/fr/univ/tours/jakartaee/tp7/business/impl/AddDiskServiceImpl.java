@@ -7,6 +7,7 @@ import java.util.Set;
 import fr.univ.tours.jakartaee.tp7.business.AddDiskService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.Disk;
 import fr.univ.tours.jakartaee.tp7.dao.AddDiskDAO;
+import fr.univ.tours.jakartaee.tp7.entities.DiskEntity;
 
 public class AddDiskServiceImpl implements AddDiskService {
 	
@@ -20,19 +21,19 @@ public class AddDiskServiceImpl implements AddDiskService {
 	}
 
 	@Override
-	public List<Disk> listAllDisk() {
+	public List<DiskEntity> listAllDisk() {
 		// TODO Auto-generated method stub
 		return addDiskDao.listAllDisk();
 	}
 
 	@Override
-	public Disk getDiskById(String DiskId) {
+	public DiskEntity getDiskById(String DiskId) {
 		// TODO Auto-generated method stub
 		return addDiskDao.getDiskById(DiskId);
 	}
 
 	@Override
-	public void addDisk(Disk disk) {
+	public void addDisk(DiskEntity disk) {
 		// TODO Auto-generated method stub
 		addDiskDao.addDisk(disk);
 	}

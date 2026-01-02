@@ -16,6 +16,18 @@ public class VinylCollectionEntityId implements Serializable {
 	
 	@Column(name = "identification_code")
 	private String identificationCode;
+	
+	
+	
+	public VinylCollectionEntityId() {
+		super();
+	}
+
+	public VinylCollectionEntityId(String user, String identificationCode) {
+		super();
+		this.user = user;
+		this.identificationCode = identificationCode;
+	}
 
 	public String getUser() {
 		return user;

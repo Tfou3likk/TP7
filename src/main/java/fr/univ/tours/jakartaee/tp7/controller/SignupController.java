@@ -2,6 +2,7 @@ package fr.univ.tours.jakartaee.tp7.controller;
 
 import fr.univ.tours.jakartaee.tp7.business.ConnectionService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class SignupController {
 	@PostMapping("/signup")
     public String sign(Model model, @RequestParam("email") String email, @RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname, HttpSession session) {
         try {
-            User user = new User(email, firstname, lastname);
+            UserEntity user = new UserEntity(email, firstname, lastname);
             // TODO implement this assignment with the EJB
             user = connectService.register(user);
             

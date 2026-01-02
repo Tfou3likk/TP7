@@ -6,6 +6,7 @@ import fr.univ.tours.jakartaee.tp7.business.ConnectionService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
 import fr.univ.tours.jakartaee.tp7.dao.UserDao;
 import fr.univ.tours.jakartaee.tp7.dao.impl.UserDaoImpl;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 
 
 
@@ -18,29 +19,26 @@ public class ConnectionServiceImpl implements ConnectionService {
 		this.userDao = userDao;
 	}
 	
-	public User connect(String email) throws Exception {
-		User user = null;
+	public UserEntity connect(String email){
+		UserEntity user = null;
 		if(!email.isEmpty() && !email.isBlank()) {
 			user = userDao.getUserByEmail(email);
 			if(user != null) {
 				return user;
 			}
 		}
-		throw new Exception();
+		return user;
+		
 		
 	}
 	
-	public User register(User user) throws Exception {
+	public UserEntity register(UserEntity user) {
 		
-		if(userDao.getUserByEmail(user.email()) == null) {
-			if(userDao.registerUser(user) == true) {
-				return user;
-			}
-			
-			
+		if(userDao.getUserByEmail(user.getEmail()) == null) {
+			userDao.registerUser(user);
+			return user;
 		}
-		throw new Exception();
-		
+		 return null;
 		
 	}
 

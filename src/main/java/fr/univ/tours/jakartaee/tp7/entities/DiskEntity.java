@@ -31,6 +31,16 @@ public class DiskEntity {
 	private DiskToSoldEntity diskToSold;
 
 	
+	
+	public DiskEntity() {
+		super();
+	}
+
+	public DiskEntity(String identificationCode) {
+		super();
+		this.identificationCode = identificationCode;
+	}
+
 	public List<VinylCollectionEntity> getVinylCollection() {
 		return vinylCollection;
 	}

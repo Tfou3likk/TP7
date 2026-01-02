@@ -5,6 +5,8 @@ import fr.univ.tours.jakartaee.tp7.business.TransactionService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.DiskToSold;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
 import fr.univ.tours.jakartaee.tp7.dao.DiskToSoldDAO;
+import fr.univ.tours.jakartaee.tp7.entities.DiskToSoldEntity;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class BasketServiceImpl implements BasketService {
 
 
     @Override
-    public List<DiskToSold> getBasketDetail(){
+    public List<DiskToSoldEntity> getBasketDetail(){
         // TODO to implements
     	return diskToSoldDAO.listAllByIds(basketByReference);
     }
@@ -51,7 +53,7 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public boolean makeOrder(User buyer){
+    public boolean makeOrder(UserEntity buyer){
         // TODO to implements
     	if(basketByReference.isEmpty()) {
     		return false;

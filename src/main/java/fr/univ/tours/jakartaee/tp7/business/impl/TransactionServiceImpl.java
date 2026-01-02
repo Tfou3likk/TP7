@@ -4,6 +4,7 @@ import fr.univ.tours.jakartaee.tp7.business.TransactionService;
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
 import fr.univ.tours.jakartaee.tp7.dao.DiskToSoldDAO;
 import fr.univ.tours.jakartaee.tp7.dao.VinylCollectionDAO;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -28,7 +29,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 	@Override
-    public void makeTransaction(User buyer, Collection<String> diskIds){
+    public void makeTransaction(UserEntity buyer, Collection<String> diskIds){
         diskToSoldDAO.removeFromMarketplace(diskIds);
         vinylCollectionDAO.addToCollection(buyer,diskIds);
     }

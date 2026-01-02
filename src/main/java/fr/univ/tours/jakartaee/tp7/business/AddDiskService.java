@@ -3,13 +3,14 @@ package fr.univ.tours.jakartaee.tp7.business;
 import java.util.List;
 
 import fr.univ.tours.jakartaee.tp7.business.pojo.Disk;
+import fr.univ.tours.jakartaee.tp7.entities.DiskEntity;
 
 public interface AddDiskService {
 	
-	List<Disk> listAllDisk();
+	List<DiskEntity> listAllDisk();
 	
-	Disk getDiskById(String DiskId);
+	DiskEntity getDiskById(String DiskId);
 	
-	void addDisk(Disk disk);
+	void addDisk(DiskEntity disk);
 
 }

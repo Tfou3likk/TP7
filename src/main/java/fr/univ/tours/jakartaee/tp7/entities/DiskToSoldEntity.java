@@ -22,6 +22,10 @@ public class DiskToSoldEntity {
 	private DiskEntity disk;
 	
 	
+	public DiskToSoldEntity() {
+		super();
+	}
+
 	public DiskEntity getDisk() {
 		return disk;
 	}

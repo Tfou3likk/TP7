@@ -1,13 +1,14 @@
 package fr.univ.tours.jakartaee.tp7.business;
 
 import fr.univ.tours.jakartaee.tp7.business.pojo.User;
+import fr.univ.tours.jakartaee.tp7.entities.UserEntity;
 
 
 
 public interface ConnectionService {
 	
-	User connect(String email) throws Exception;
+	UserEntity connect(String email);
 	
-	User register(User user) throws Exception;
+	UserEntity register(UserEntity user);
 
 }

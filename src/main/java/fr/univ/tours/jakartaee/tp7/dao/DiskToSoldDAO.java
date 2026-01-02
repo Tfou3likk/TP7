@@ -7,13 +7,14 @@ import java.util.Collection;
 import java.util.List;
 
 import fr.univ.tours.jakartaee.tp7.business.pojo.DiskToSold;
+import fr.univ.tours.jakartaee.tp7.entities.DiskToSoldEntity;
 
 
 public interface DiskToSoldDAO {
 
-    List<DiskToSold> listAll();
+    List<DiskToSoldEntity> listAll();
 
-    List<DiskToSold> listAllByIds(Collection<String> diskIds);
+    List<DiskToSoldEntity> listAllByIds(Collection<String> diskIds);
 
     void removeFromMarketplace(Collection<String> diskIds);
 }
